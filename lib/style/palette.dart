@@ -18,10 +18,10 @@ import 'package:flame/palette.dart';
 class Palette {
   PaletteEntry get seed => const PaletteEntry(Color(0xFF0050bc));
   PaletteEntry get text => const PaletteEntry(Color(0xee352b42));
-  PaletteEntry get backgroundMain => const PaletteEntry(Color(0xffa2fff3));
+  PaletteEntry get backgroundMain => const PaletteEntry(Color.fromRGBO(104, 114, 148, 1));
   PaletteEntry get backgroundLevelSelection =>
-      const PaletteEntry(Color(0xffffcd75));
+      const PaletteEntry(Color.fromARGB(255, 212, 181, 126));
   PaletteEntry get backgroundPlaySession =>
-      const PaletteEntry(Color(0xffa2fff3));
+      const PaletteEntry(Color.fromARGB(255, 39, 57, 107));
   PaletteEntry get backgroundSettings => const PaletteEntry(Color(0xffbfc8e3));
 }

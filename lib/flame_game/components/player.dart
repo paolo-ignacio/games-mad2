@@ -1,3 +1,4 @@
+import 'package:endless_runner/flame_game/components/flying_enemy.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/animation.dart';
@@ -102,25 +103,26 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
     _lastPosition.setFrom(position);
   }
 
-  @override
-  void onCollisionStart(
-    Set<Vector2> intersectionPoints,
-    PositionComponent other,
-  ) {
-    super.onCollisionStart(intersectionPoints, other);
-    // When the player collides with an obstacle it should lose all its points.
-    if (other is Obstacle) {
-      game.audioController.playSfx(SfxType.damage);
-      resetScore();
-      add(HurtEffect());
-    } else if (other is Point) {
-      // When the player collides with a point it should gain a point and remove
-      // the `Point` from the game.
-      game.audioController.playSfx(SfxType.score);
-      other.removeFromParent();
-      addScore();
-    }
+ @override
+void onCollisionStart(
+  Set<Vector2> intersectionPoints,
+  PositionComponent other,
+) {
+  super.onCollisionStart(intersectionPoints, other);
+  
+  // When the player collides with an obstacle or a flying enemy, it should lose all its points.
+  if (other is Obstacle || other is FlyingEnemy) {
+    game.audioController.playSfx(SfxType.damage);
+    resetScore();
+    add(HurtEffect());
+  } else if (other is Point) {
+    // When the player collides with a point it should gain a point and remove
+    // the `Point` from the game.
+    game.audioController.playSfx(SfxType.score);
+    other.removeFromParent();
+    addScore();
   }
+}
 
   /// [towards] should be a normalized vector that points in the direction that
   /// the player should jump.

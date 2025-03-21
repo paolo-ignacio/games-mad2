@@ -71,7 +71,9 @@ class MainMenuScreen extends StatelessWidget {
                 builder: (context, audioOn, child) {
                   return IconButton(
                     onPressed: () => settingsController.toggleAudioOn(),
-                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
+                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off, 
+                    size: 35,)
+                    ,
                   );
                 },
               ),
